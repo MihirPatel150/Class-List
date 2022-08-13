@@ -117,22 +117,14 @@ function indent(event) {
 
             
             if(currentRow.classList[1] === 'parent') {
-                if(nextRow === null){
-                    return currentRow.remove();
-                }
-                else if(nextRow.classList[1] === 'child' || nextRow.classList[1] === 'grand-child') {
-                    nextRow.remove();
-                }
+                if(nextRow === null) return currentRow.remove();
+                else if(nextRow.classList[1] !== 'parent') nextRow.remove();
                 else return currentRow.remove();
             }
             
             else if(currentRow.classList[1] === 'child') {
-                if(nextRow === null){
-                    return currentRow.remove();
-                }
-                else if(nextRow.classList[1] === 'grand-child') {
-                    nextRow.remove();
-                }
+                if(nextRow === null) return currentRow.remove();
+                else if(nextRow.classList[1] === 'grand-child') nextRow.remove();
                 else return currentRow.remove();
             }
             
