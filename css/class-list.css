@@ -22,7 +22,7 @@ body {
 
 main {
   min-width: 400px;
-  width: clamp(400px, 40%, 800px);
+  width: clamp(300px, 40%, 800px);
   padding: 25px;
   border-radius: 5px;
   background-color: var(--text-white-color);
@@ -77,6 +77,9 @@ hr {
 }
 
 
+
+
+
 input[type="text"] {
   grid-area: input;
   margin: 0;
@@ -89,6 +92,27 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
+}
+
+.parent > input {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0077ff;
+}
+.child > input{
+  margin-left: 30px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: rgb(54, 54, 54);
+}
+.grand-child > input {
+  margin-left: 60px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: gray;
 }
 
 button[type="submit"] {
