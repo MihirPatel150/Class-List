@@ -81,7 +81,6 @@ function indent(event) {
         }
     }
 
-
     //Outdent
     if (clickedElement.classList[1] === "fa-arrow-left") {
         if (currentRow.classList[1] === 'parent') return;
@@ -100,59 +99,48 @@ function indent(event) {
     //Delete
     if (clickedElement.classList[1] === "fa-trash") {
 
-        let currentRowNumber = parseInt(currentRow.id.slice(3, 4));  //1,2,3,4,...
         let totalNumberOfRows = document.getElementsByTagName("row").length //4
-
+        let currentRowNumber;
 
         for (j = 0; j < totalNumberOfRows; j++) {
-            getRow = document.querySelectorAll('row')[j]
+            let getRow = document.querySelectorAll('row')[j]
+            // console.log(getRow)
+
             if (currentRow.getAttribute("id") === getRow.getAttribute("id")) {
                 currentRowNumber = j + 1;   //1,2,3,4,....
             }
         }
 
-
-
-
-        for (let i = currentRowNumber; i < totalNumberOfRows; i++) {   //clicked-row-number -> total rows
-            let getRow = document.querySelectorAll('row')[i]
-            // let getRowNumber = parseInt(getRow.id.slice(3, 4));
-            console.log({ currentRowNumber, currentRow, totalNumberOfRows })
-
+        for (i = currentRowNumber; i <= totalNumberOfRows; i++) {   //clicked-row-number -> total rows
+            getRow = document.querySelectorAll('row')[i]
+            const nextRow = currentRow.nextElementSibling
 
             
-
-            if (currentRow.classList[1] === "parent") {
-
-                if (getRow.classList[1] !== "parent") {
-                    getRow.remove();
-                    i--
-                    console.log(getRow)
+            if(currentRow.classList[1] === 'parent') {
+                if(nextRow === null){
+                    return currentRow.remove();
+                }
+                else if(nextRow.classList[1] === 'child' || nextRow.classList[1] === 'grand-child') {
+                    nextRow.remove();
                 }
                 else return currentRow.remove();
             }
-
-            else if (currentRow.classList[1] === "child") {
-                if (getRow.classList[1] === "grand-child") {
-                    getRow.remove();
-                    i--;
+            
+            else if(currentRow.classList[1] === 'child') {
+                if(nextRow === null){
+                    return currentRow.remove();
+                }
+                else if(nextRow.classList[1] === 'grand-child') {
+                    nextRow.remove();
                 }
                 else return currentRow.remove();
             }
-
-            // else return currentRow.remove();
-            else return console.log(currentRow)
+            
+            else if(currentRow.classList[1] === 'grand-child') return currentRow.remove();
         }
-
-        //For last row
-        currentRow.remove();
-
     }
 
 
+
+
 }
-
-
-
-
-
