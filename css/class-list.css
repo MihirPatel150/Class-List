@@ -3,6 +3,7 @@
   --text-dark-color: #395b64;
   --text-light-color: #a5c9ca;
   --text-white-color: #e7f6f2;
+  --color-hover: #368aa1;
 }
 
 * {
@@ -30,7 +31,7 @@ main {
 }
 
 row {
-  height: 6vh;
+  height: fit-content;
   color: var(--text-dark-color);
 }
 
@@ -38,6 +39,9 @@ i {
   margin: 0;
   padding: 3px;
   cursor: pointer;
+}
+i:hover {
+  color: var(--color-hover);
 }
 
 hr {
@@ -80,16 +84,12 @@ hr {
 /* Input bar styles */
 input[type="text"] {
   grid-area: input;
-  width: inherit;
   margin: 0;
   padding: 0;
 
   border: 0;
-  /* background-color: transparent; */
   background-color: transparent;
   font-family: "Open Sans", sans-serif;
-
-  wor
 }
 
 input[type="text"]:focus {
@@ -138,7 +138,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #368aa1;
+  background: var(--color-hover);
   text-decoration: none;
 }
 
@@ -155,3 +155,47 @@ button[type="submit"]:hover {
   display: none;
 }
 
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 550px) {
+  
+  body {
+    margin-top: 10vh;
+  }
+
+  .grid-column {
+    grid-template-columns: clamp(90px, 12vw, 20vw) auto;
+    grid-template-areas:
+    "action input"
+    "hr hr"
+    "add add";
+  }
+  .fa-arrow-left {grid-area: left;}
+  .fa-arrow-right {grid-area: right;}
+  .fa-fa-arrows-up-down-left-right {grid-area: move;}
+  .fa-trash {grid-area: del;}
+  .action-buttons {
+    grid-area: action;
+    display: grid;
+    grid-template-columns: 25px 25px;
+    grid-template-areas:
+    "left right"
+    "move del";
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+  .child > input{
+    width: 87%;
+  }
+  .grand-child > input {
+    width: 74.5%;
+  }
+}

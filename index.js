@@ -3,21 +3,13 @@
 const table = document.querySelector('.table')
 const addButton = document.querySelector('#add-button')
 const actionsDiv = document.querySelector('#actions-div')
-// const actionButton = document.querySelectorAll('.fa-solid')
 
 
 //EVENT LISTENER
-// window.onload = addNewRow;
+
 addButton.addEventListener('click', addNewRow)
 document.addEventListener('click', applyAction)
 table.addEventListener('mousedown', dragAndDrop)
-
-
-// window.addEventListener('keydown', (event) => {
-//     if(event.repeat) return;
-
-//     console.log(event.key)
-// })
 
 
 //FUNCTIONS
@@ -34,6 +26,7 @@ function addNewRow(event) {
 
     //Add Action buttons to new row
     const newRowActions = document.createElement('div')
+    newRowActions.classList.add("action-buttons")
     newRowActions.innerHTML = actionsDiv.innerHTML
     newRow.appendChild(newRowActions)
 
@@ -105,7 +98,6 @@ function applyAction(event) {
 
         for (j = 0; j < totalNumberOfRows; j++) {
             let getRow = document.querySelectorAll('row')[j]
-            // console.log(getRow)
 
             if (currentRow.getAttribute("id") === getRow.getAttribute("id")) {
                 currentRowNumber = j + 1;   //1,2,3,4,....
@@ -137,8 +129,12 @@ function applyAction(event) {
 
 //Drag & Drop
 function dragAndDrop(event) {
-    new Sortable(table, {
-        Animation: 1000
-    });
+
+    const clickedElement = event.target;
+    if (clickedElement.classList[1] === "fa-arrows-up-down-left-right") {
+        new Sortable(table, {
+            Animation: 1000
+        });
+    }
 }
 
