@@ -9,7 +9,8 @@ const actionsDiv = document.querySelector('#actions-div')
 //EVENT LISTENER
 // window.onload = addNewRow;
 addButton.addEventListener('click', addNewRow)
-document.addEventListener('click', indent)
+document.addEventListener('click', applyAction)
+table.addEventListener('mousedown', dragAndDrop)
 
 
 // window.addEventListener('keydown', (event) => {
@@ -58,7 +59,7 @@ function addNewRow(event) {
     counter++;
 }
 
-function indent(event) {
+function applyAction(event) {
 
     const clickedElement = event.target;
     const currentRowActions = clickedElement.parentElement;
@@ -115,24 +116,29 @@ function indent(event) {
             getRow = document.querySelectorAll('row')[i]
             const nextRow = currentRow.nextElementSibling
 
-            
-            if(currentRow.classList[1] === 'parent') {
-                if(nextRow === null) return currentRow.remove();
-                else if(nextRow.classList[1] !== 'parent') nextRow.remove();
+
+            if (currentRow.classList[1] === 'parent') {
+                if (nextRow === null) return currentRow.remove();
+                else if (nextRow.classList[1] !== 'parent') nextRow.remove();
                 else return currentRow.remove();
             }
-            
-            else if(currentRow.classList[1] === 'child') {
-                if(nextRow === null) return currentRow.remove();
-                else if(nextRow.classList[1] === 'grand-child') nextRow.remove();
+
+            else if (currentRow.classList[1] === 'child') {
+                if (nextRow === null) return currentRow.remove();
+                else if (nextRow.classList[1] === 'grand-child') nextRow.remove();
                 else return currentRow.remove();
             }
-            
-            else if(currentRow.classList[1] === 'grand-child') return currentRow.remove();
+
+            else if (currentRow.classList[1] === 'grand-child') return currentRow.remove();
         }
     }
-
-
-
-
 }
+
+
+//Drag & Drop
+function dragAndDrop(event) {
+    new Sortable(table, {
+        Animation: 1000
+    });
+}
+

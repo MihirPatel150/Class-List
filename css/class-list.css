@@ -3,8 +3,6 @@
   --text-dark-color: #395b64;
   --text-light-color: #a5c9ca;
   --text-white-color: #e7f6f2;
-
-  counter-reset: rows;
 }
 
 * {
@@ -13,38 +11,38 @@
 }
 
 body {
-  margin-top: 100px;
+  margin-top: 15vh;
   display: flex;
   justify-content: center;
   font-family: "Open Sans", sans-serif;
   background-color: var(--text-dark-color);
 }
 
+h1 {
+  font-size: clamp(1rem, 7vw, 3rem); 
+}
+
 main {
-  min-width: 400px;
-  width: clamp(300px, 40%, 800px);
+  width: clamp(60vw, 70vw, 80vw);
   padding: 25px;
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: var(--text-white-color);
 }
 
 row {
+  height: 6vh;
   color: var(--text-dark-color);
-  counter-increment: rows;
 }
-
-/* row::before {
-    content: counter(rows);
-} */
 
 i {
   margin: 0;
   padding: 3px;
+  cursor: pointer;
 }
 
 hr {
   grid-area: hr;
-  margin-top: 10px;
+  margin: 10px 0;
   border: 0;
   border-top: 1px solid rgb(170, 170, 170);
 }
@@ -57,19 +55,19 @@ hr {
 
 /* Class Styles */
 
-.actions {
-  grid-area: actions;
+.action-buttons {
+  display: flex;
+  align-items: center;
 }
 
 
 .grid-column {
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: clamp(110px, 12vw, 20vw) auto;
   grid-template-areas:
     "action-bubttons input"
     "hr hr"
     "add add";
-    margin: 15px 0;
 }
 
 .table {
@@ -79,15 +77,19 @@ hr {
 
 
 
-
+/* Input bar styles */
 input[type="text"] {
   grid-area: input;
+  width: inherit;
   margin: 0;
   padding: 0;
 
   border: 0;
-  background-color: #E7F6F2;
+  /* background-color: transparent; */
+  background-color: transparent;
   font-family: "Open Sans", sans-serif;
+
+  wor
 }
 
 input[type="text"]:focus {
@@ -101,20 +103,23 @@ input[type="text"]:focus {
   color: #0077ff;
 }
 .child > input{
-  margin-left: 30px;
+  margin-left: 5vw;
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   color: rgb(54, 54, 54);
 }
 .grand-child > input {
-  margin-left: 60px;
+  margin-left: 10vw;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 1rem;
   color: gray;
 }
 
+
+
+/* Add button styles */
 button[type="submit"] {
   grid-area: add;
   width: 100%;
@@ -122,12 +127,12 @@ button[type="submit"] {
   
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  color: #ffffff;
+  color: white;
   text-decoration: none;
 
   border: 0;
   border-radius: 5px;
-  background: #395B64;
+  background: var(--text-dark-color);
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
 }
