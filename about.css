@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Poppins:wght@400;500;700;900&display=swap');
+
+body {
+    margin: 50px 150px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar > h1 {
+    margin-right: auto;
+    font-family: 'Nothing You Could Do', cursive;
+}
+
+.navbar > h3 {
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+.contact {
+    margin-top: 100px;
+}
